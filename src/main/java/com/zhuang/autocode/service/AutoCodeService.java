@@ -5,13 +5,13 @@ import com.zhuang.autocode.model.SysAutoCodeDetail;
 
 public interface AutoCodeService {
 	
-	void Add(SysAutoCode model);
+	void add(SysAutoCode model);
     
-    SysAutoCode Get(String id);
+    SysAutoCode get(String id);
     
-    SysAutoCodeDetail GetDetailByPrefixCode(String autoCodeId ,String prefixCode);
+    SysAutoCodeDetail getDetailByPrefixCode(String autoCodeId , String prefixCode);
 
-    void AddDetail(SysAutoCodeDetail detail);
+    void addDetail(SysAutoCodeDetail detail);
 
-    void SaveDetail(SysAutoCodeDetail detail);
+    void saveDetail(SysAutoCodeDetail detail);
 }

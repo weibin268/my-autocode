@@ -6,11 +6,8 @@ import com.zhuang.autocode.service.AutoCodeService;
 public class ParserContext {
 
 	private SysAutoCode sysAutoCode;
-
 	private String parameter;
-
 	private String parsedText;
-
 	private AutoCodeService service;
 
 	public SysAutoCode getSysAutoCode() {

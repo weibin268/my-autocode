@@ -6,42 +6,28 @@ import com.zhuang.data.DbAccessor;
 
 public class DefaultAutoCodeService implements AutoCodeService {
 
-	DbAccessor dbAccessor = DbAccessor.get();
+    private DbAccessor dbAccessor = DbAccessor.get();
+    public void add(SysAutoCode sysAutoCode) {
+        dbAccessor.insert(sysAutoCode);
+    }
 
-	public void Add(SysAutoCode model) {
+    public SysAutoCode get(String id) {
+        return dbAccessor.select(id, SysAutoCode.class);
+    }
 
-		dbAccessor.executeNonQuery("com.zhuang.autocode.mapper.SysAutoCode.addSysAutoCode", model);
-		
-	}
+    public SysAutoCodeDetail getDetailByPrefixCode(String autoCodeId, String prefixCode) {
+        SysAutoCodeDetail params = new SysAutoCodeDetail();
+        params.setAutocodeId(autoCodeId);
+        params.setPrefixCode(prefixCode);
+        return dbAccessor.selectOne(params, SysAutoCodeDetail.class);
+    }
 
-	public SysAutoCode Get(String id) {
+    public void addDetail(SysAutoCodeDetail detail) {
+        dbAccessor.insert(detail);
+    }
 
-		return dbAccessor.queryEntity("com.zhuang.autocode.mapper.SysAutoCode.selectSysAutoCodeById", id,SysAutoCode.class);
-
-	}
-
-	public SysAutoCodeDetail GetDetailByPrefixCode(String autoCodeId, String prefixCode) {
-		SysAutoCodeDetail entity;
-
-		SysAutoCodeDetail param = new SysAutoCodeDetail();
-		param.setAutocodeId(autoCodeId);
-		param.setPrefixCode(prefixCode);
-		entity = dbAccessor
-				.queryEntity("com.zhuang.autocode.mapper.SysAutoCodeDetail.selectSysAutoCodeDetailByPrefixCode", param,SysAutoCodeDetail.class);
-
-		return entity;
-	}
-
-	public void AddDetail(SysAutoCodeDetail detail) {
-
-		dbAccessor.executeNonQuery("com.zhuang.autocode.mapper.SysAutoCodeDetail.insertSysAutoCodeDetail", detail);
-
-	}
-
-	public void SaveDetail(SysAutoCodeDetail detail) {
-
-		dbAccessor.executeNonQuery("com.zhuang.autocode.mapper.SysAutoCodeDetail.updateSysAutoCodeDetail", detail);
-	
-	}
+    public void saveDetail(SysAutoCodeDetail detail) {
+        dbAccessor.update(detail);
+    }
 
 }

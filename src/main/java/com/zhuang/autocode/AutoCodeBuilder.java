@@ -12,53 +12,46 @@ import com.zhuang.autocode.service.DefaultAutoCodeService;
 import com.zhuang.autocode.service.AutoCodeService;
 
 public class AutoCodeBuilder {
+    private SysAutoCode sysAutoCode;
+    private AutoCodeService service;
 
-	private SysAutoCode sysAutoCode;
-	AutoCodeService service;
+    public AutoCodeBuilder(String autoCodeId) {
+        this(autoCodeId, new DefaultAutoCodeService());
+    }
 
-	public AutoCodeBuilder(String autoCodeId) {
-		this(autoCodeId, new DefaultAutoCodeService());
-	}
+    public AutoCodeBuilder(String autoCodeId, AutoCodeService service) {
+        this.service = service;
+        this.sysAutoCode = service.get(autoCodeId);
+    }
 
-	public AutoCodeBuilder(String autoCodeId, AutoCodeService service) {
-		this.service = service;
-		this.sysAutoCode = service.Get(autoCodeId);
-	}
+    public String build() {
+        String result = "";
+        result = sysAutoCode.getExpression();
+        Pattern pattern = Pattern.compile("(?<=\\{)[^\\{\\}]+(?=\\})");
+        Matcher matcher = pattern.matcher(sysAutoCode.getExpression());
+        while (matcher.find()) {
 
-	public String Build() {
-		String result = "";
+            String tag = matcher.group();
+            String[] arTag = tag.split(":");
+            String tagName = arTag[0];
+            String tagParam = arTag.length > 1 ? tag.replaceAll(tagName + ":", "") : "";
 
-		result=sysAutoCode.getExpression();
+            String parsedText = "";
 
-		Pattern pattern=Pattern.compile("(?<=\\{)[^\\{\\}]+(?=\\})");
+            Parser parser = ParserRepository.getInstance().getParser(tagName);
+            if (parser != null) {
+                ParserContext parserContext = new ParserContext();
+                parserContext.setSysAutoCode(sysAutoCode);
+                parserContext.setParameter(tagParam);
+                parserContext.setParsedText(result);
+                parserContext.setService(service);
 
-		Matcher matcher=pattern.matcher(sysAutoCode.getExpression());
-		
-		while (matcher.find()) {
-			
-			String tag = matcher.group();
-			String[] arTag = tag.split(":");
-			String tagName = arTag[0];
-			String tagParam = arTag.length > 1 ? tag.replaceAll(tagName + ":", "") : "";
-
-			String parsedText = "";
-
-            Parser parser = ParserRepository.getInstance().GetParser(tagName);
-            if (parser != null)
-            {
-              	ParserContext parserContext = new ParserContext();
-              	parserContext.setSysAutoCode(sysAutoCode);
-              	parserContext.setParameter(tagParam);
-              	parserContext.setParsedText(result);
-              	parserContext.setService(service);
-              	
-                parsedText = parser.Parse(parserContext);
+                parsedText = parser.parse(parserContext);
             }
 
             result = result.replace("{" + tag + "}", parsedText);
-        
-		}
-		
-		return result;
-	}
+
+        }
+        return result;
+    }
 }

@@ -9,7 +9,7 @@ public class DateTimeParser implements Parser {
 		return "dt";
 	}
 
-	public String Parse(ParserContext context) {
+	public String parse(ParserContext context) {
 
 		Date dNow = new Date();
 

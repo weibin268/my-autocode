@@ -1,12 +1,13 @@
 package com.zhuang.autocode.model;
 
+import com.zhuang.data.orm.annotation.Id;
 import com.zhuang.data.orm.annotation.Table;
 import com.zhuang.data.orm.annotation.UnderscoreNaming;
 
 @UnderscoreNaming
 @Table(name = "sys_autocode")
 public class SysAutoCode {
-
+	@Id
 	private String id;
 	
 	private String expression;

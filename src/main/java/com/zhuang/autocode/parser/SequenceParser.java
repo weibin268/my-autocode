@@ -12,16 +12,13 @@ public class SequenceParser implements Parser {
 		return "seq";
 	}
 
-	public String Parse(ParserContext context) {
-
+	public String parse(ParserContext context) {
 		String result = "";
-
-		result = GetSeq(context);
-
+		result = getSeq(context);
 		return result;
 	}
 
-	private String GetSeq(ParserContext context) {
+	private String getSeq(ParserContext context) {
 		String[] arParam = context.getParameter().split(",");
 		int minLength = 0;
 		boolean keepIncrease = false;
@@ -42,7 +39,7 @@ public class SequenceParser implements Parser {
 		}
 
 		SysAutoCodeDetail detailModel = context.getService()
-				.GetDetailByPrefixCode(context.getSysAutoCode().getId(), prefixCode);
+				.getDetailByPrefixCode(context.getSysAutoCode().getId(), prefixCode);
 
 		Date dtNow = new Date();
 
@@ -50,7 +47,7 @@ public class SequenceParser implements Parser {
 			detailModel.setSeq(detailModel.getSeq() + 1);
 			detailModel.setModifiedTime(dtNow);
 
-			context.getService().SaveDetail(detailModel);
+			context.getService().saveDetail(detailModel);
 		} else {
 			detailModel = new SysAutoCodeDetail();
 			detailModel.setId(UUID.randomUUID().toString());
@@ -60,7 +57,7 @@ public class SequenceParser implements Parser {
 			detailModel.setCreatedTime(dtNow);
 			detailModel.setModifiedTime(dtNow);
 
-			context.getService().AddDetail(detailModel);
+			context.getService().addDetail(detailModel);
 		}
 
 		int finalLength = (detailModel.getSeq().toString().length() > minLength

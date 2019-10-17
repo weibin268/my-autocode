@@ -50,7 +50,7 @@
 		<dependency>
 			<groupId>com.github.weibin268</groupId>
 			<artifactId>my-data</artifactId>
-			<version>1.0.0</version>
+			<version>1.0.8</version>
 		</dependency>
 
 		<dependency>

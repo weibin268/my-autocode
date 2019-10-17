@@ -1,5 +1,6 @@
 package com.zhuang.autocode.model;
 
+import com.zhuang.data.orm.annotation.Id;
 import com.zhuang.data.orm.annotation.Table;
 import com.zhuang.data.orm.annotation.UnderscoreNaming;
 
@@ -8,7 +9,7 @@ import java.util.Date;
 @UnderscoreNaming
 @Table(name = "sys_autocode_detail")
 public class SysAutoCodeDetail {
-
+	@Id
 	public String id;
 
 	public String autocodeId;

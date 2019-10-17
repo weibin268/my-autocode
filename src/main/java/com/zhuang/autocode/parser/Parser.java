@@ -4,6 +4,6 @@ public interface Parser {
 
 	String getName();
 
-	String Parse(ParserContext context);
+	String parse(ParserContext context);
 
 }

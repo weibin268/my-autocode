@@ -5,42 +5,36 @@ import java.util.Map;
 
 public class ParserRepository {
 
-	private static ParserRepository instance;
+    private static ParserRepository instance;
+    private Map<String, Parser> mapParsers;
 
-	private Map<String, Parser> mapParsers;
+    public static synchronized ParserRepository getInstance() {
+        if (instance == null) {
+            instance = create();
+        }
+        return instance;
+    }
 
-	public static synchronized ParserRepository getInstance() {
-
-		if (instance == null) {
-			instance = Create();
-		}
-
-		return instance;
-	}
-
-    private static ParserRepository Create()
-    {
+    private static ParserRepository create() {
         ParserRepository result = new ParserRepository();
-
-        result.AddParser(new DateTimeParser());
-        result.AddParser(new SequenceParser());
-        
+        result.addParser(new DateTimeParser());
+        result.addParser(new SequenceParser());
         return result;
     }
-	
-	public ParserRepository() {
-		mapParsers = new HashMap<String, Parser>();
-	}
 
-	public Parser GetParser(String name) {
-		if (mapParsers.containsKey(name)) {
-			return mapParsers.get(name);
-		} else {
-			return null;
-		}
-	}
+    public ParserRepository() {
+        mapParsers = new HashMap<String, Parser>();
+    }
 
-	public void AddParser(Parser parser) {
-		mapParsers.put(parser.getName(), parser);
-	}
+    public Parser getParser(String name) {
+        if (mapParsers.containsKey(name)) {
+            return mapParsers.get(name);
+        } else {
+            return null;
+        }
+    }
+
+    public void addParser(Parser parser) {
+        mapParsers.put(parser.getName(), parser);
+    }
 }
