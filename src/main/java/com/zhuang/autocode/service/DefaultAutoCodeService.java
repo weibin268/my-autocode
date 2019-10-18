@@ -6,7 +6,16 @@ import com.zhuang.data.DbAccessor;
 
 public class DefaultAutoCodeService implements AutoCodeService {
 
-    private DbAccessor dbAccessor = DbAccessor.get();
+    private DbAccessor dbAccessor;
+
+    public DefaultAutoCodeService() {
+        this.dbAccessor = DbAccessor.get();
+    }
+
+    public DefaultAutoCodeService(DbAccessor dbAccessor) {
+        this.dbAccessor = dbAccessor;
+    }
+
     public void add(AutoCode autoCode) {
         dbAccessor.insert(autoCode);
     }

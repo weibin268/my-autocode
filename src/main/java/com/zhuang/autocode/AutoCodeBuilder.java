@@ -10,6 +10,7 @@ import com.zhuang.autocode.parser.ParserRepository;
 import com.zhuang.autocode.service.DefaultAutoCodeService;
 
 import com.zhuang.autocode.service.AutoCodeService;
+import com.zhuang.data.DbAccessor;
 
 public class AutoCodeBuilder {
     private AutoCode autoCode;
