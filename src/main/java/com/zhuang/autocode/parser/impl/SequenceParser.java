@@ -1,10 +1,12 @@
-package com.zhuang.autocode.parser;
+package com.zhuang.autocode.parser.impl;
 
 import java.text.DecimalFormat;
 import java.util.Date;
 import java.util.UUID;
 
 import com.zhuang.autocode.model.AutoCodeDetail;
+import com.zhuang.autocode.parser.Parser;
+import com.zhuang.autocode.parser.ParserContext;
 
 public class SequenceParser implements Parser {
 
