@@ -10,7 +10,7 @@
 	
 	<groupId>com.github.weibin268</groupId>
 	<artifactId>my-autocode</artifactId>
-	<version>1.0.0</version>
+	<version>1.0.1</version>
 	<packaging>jar</packaging>
 	<name>my-autocode</name>
 	<description>自动生成流号编码</description>
