@@ -1,21 +1,21 @@
 package com.zhuang.autocode.parser;
 
-import com.zhuang.autocode.model.SysAutoCode;
+import com.zhuang.autocode.model.AutoCode;
 import com.zhuang.autocode.service.AutoCodeService;
 
 public class ParserContext {
 
-	private SysAutoCode sysAutoCode;
+	private AutoCode autoCode;
 	private String parameter;
 	private String parsedText;
 	private AutoCodeService service;
 
-	public SysAutoCode getSysAutoCode() {
-		return sysAutoCode;
+	public AutoCode getAutoCode() {
+		return autoCode;
 	}
 
-	public void setSysAutoCode(SysAutoCode sysAutoCode) {
-		this.sysAutoCode = sysAutoCode;
+	public void setAutoCode(AutoCode autoCode) {
+		this.autoCode = autoCode;
 	}
 
 	public String getParameter() {

@@ -4,7 +4,7 @@ import java.text.DecimalFormat;
 import java.util.Date;
 import java.util.UUID;
 
-import com.zhuang.autocode.model.SysAutoCodeDetail;
+import com.zhuang.autocode.model.AutoCodeDetail;
 
 public class SequenceParser implements Parser {
 
@@ -38,8 +38,8 @@ public class SequenceParser implements Parser {
 			prefixCode = "none";
 		}
 
-		SysAutoCodeDetail detailModel = context.getService()
-				.getDetailByPrefixCode(context.getSysAutoCode().getId(), prefixCode);
+		AutoCodeDetail detailModel = context.getService()
+				.getDetailByPrefixCode(context.getAutoCode().getId(), prefixCode);
 
 		Date dtNow = new Date();
 
@@ -49,9 +49,9 @@ public class SequenceParser implements Parser {
 
 			context.getService().saveDetail(detailModel);
 		} else {
-			detailModel = new SysAutoCodeDetail();
+			detailModel = new AutoCodeDetail();
 			detailModel.setId(UUID.randomUUID().toString());
-			detailModel.setAutocodeId(context.getSysAutoCode().getId());
+			detailModel.setAutocodeId(context.getAutoCode().getId());
 			detailModel.setPrefixCode(prefixCode);
 			detailModel.setSeq(1);
 			detailModel.setCreatedTime(dtNow);

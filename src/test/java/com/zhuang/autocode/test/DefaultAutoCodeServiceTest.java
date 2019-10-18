@@ -5,8 +5,8 @@ import java.util.UUID;
 
 import org.junit.Test;
 
-import com.zhuang.autocode.model.SysAutoCode;
-import com.zhuang.autocode.model.SysAutoCodeDetail;
+import com.zhuang.autocode.model.AutoCode;
+import com.zhuang.autocode.model.AutoCodeDetail;
 import com.zhuang.autocode.service.DefaultAutoCodeService;
 
 public class DefaultAutoCodeServiceTest {
@@ -17,42 +17,42 @@ public class DefaultAutoCodeServiceTest {
 	public void add() {
 		
 		DefaultAutoCodeService service = new DefaultAutoCodeService();
-		SysAutoCode sysAutoCode=new SysAutoCode();
-		sysAutoCode.setId("1");
-		sysAutoCode.setExpression("SQ{dt:yyyyMMdd}{seq:3}");
-		sysAutoCode.setDescription("1");
+		AutoCode autoCode =new AutoCode();
+		autoCode.setId("1");
+		autoCode.setExpression("SQ{dt:yyyyMMdd}{seq:3}");
+		autoCode.setDescription("1");
 		
-		service.add(sysAutoCode);
+		service.add(autoCode);
 	}
 
 	@Test
 	public void addDetail() {
 		DefaultAutoCodeService service = new DefaultAutoCodeService();
 
-		SysAutoCodeDetail sysAutoCodeDetail = new SysAutoCodeDetail();
-		sysAutoCodeDetail.setId(UUID.randomUUID().toString());
-		sysAutoCodeDetail.setSeq(1);
-		sysAutoCodeDetail.setPrefixCode("zwb");
-		sysAutoCodeDetail.setAutocodeId("1");
-		sysAutoCodeDetail.setCreatedTime(new Date());
-		sysAutoCodeDetail.setModifiedTime(new Date());
+		AutoCodeDetail autoCodeDetail = new AutoCodeDetail();
+		autoCodeDetail.setId(UUID.randomUUID().toString());
+		autoCodeDetail.setSeq(1);
+		autoCodeDetail.setPrefixCode("zwb");
+		autoCodeDetail.setAutocodeId("1");
+		autoCodeDetail.setCreatedTime(new Date());
+		autoCodeDetail.setModifiedTime(new Date());
 
-		service.addDetail(sysAutoCodeDetail);
+		service.addDetail(autoCodeDetail);
 	}
 
 	@Test
 	public void saveDetail() {
 		DefaultAutoCodeService service = new DefaultAutoCodeService();
 
-		SysAutoCodeDetail sysAutoCodeDetail = new SysAutoCodeDetail();
-		sysAutoCodeDetail.setId(guid);
-		sysAutoCodeDetail.setSeq(1);
-		sysAutoCodeDetail.setPrefixCode("zzzzzzzzzzzz");
-		sysAutoCodeDetail.setAutocodeId("1111111111111");
-		sysAutoCodeDetail.setCreatedTime(new Date());
-		sysAutoCodeDetail.setModifiedTime(new Date());
+		AutoCodeDetail autoCodeDetail = new AutoCodeDetail();
+		autoCodeDetail.setId(guid);
+		autoCodeDetail.setSeq(1);
+		autoCodeDetail.setPrefixCode("zzzzzzzzzzzz");
+		autoCodeDetail.setAutocodeId("1111111111111");
+		autoCodeDetail.setCreatedTime(new Date());
+		autoCodeDetail.setModifiedTime(new Date());
 
-		service.saveDetail(sysAutoCodeDetail);
+		service.saveDetail(autoCodeDetail);
 	}
 
 	@Test
@@ -60,9 +60,9 @@ public class DefaultAutoCodeServiceTest {
 
 		DefaultAutoCodeService service = new DefaultAutoCodeService();
 
-		SysAutoCodeDetail sysAutoCodeDetail = service.getDetailByPrefixCode("1111111111111", "zzzzzzzzzzzz");
+		AutoCodeDetail autoCodeDetail = service.getDetailByPrefixCode("1111111111111", "zzzzzzzzzzzz");
 
-		System.out.println(sysAutoCodeDetail.getId());
+		System.out.println(autoCodeDetail.getId());
 
 	}
 }

@@ -1,17 +1,17 @@
 package com.zhuang.autocode.service;
 
-import com.zhuang.autocode.model.SysAutoCode;
-import com.zhuang.autocode.model.SysAutoCodeDetail;
+import com.zhuang.autocode.model.AutoCode;
+import com.zhuang.autocode.model.AutoCodeDetail;
 
 public interface AutoCodeService {
 	
-	void add(SysAutoCode model);
+	void add(AutoCode model);
     
-    SysAutoCode get(String id);
+    AutoCode get(String id);
     
-    SysAutoCodeDetail getDetailByPrefixCode(String autoCodeId , String prefixCode);
+    AutoCodeDetail getDetailByPrefixCode(String autoCodeId , String prefixCode);
 
-    void addDetail(SysAutoCodeDetail detail);
+    void addDetail(AutoCodeDetail detail);
 
-    void saveDetail(SysAutoCodeDetail detail);
+    void saveDetail(AutoCodeDetail detail);
 }

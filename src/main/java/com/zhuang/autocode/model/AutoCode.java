@@ -6,7 +6,7 @@ import com.zhuang.data.orm.annotation.UnderscoreNaming;
 
 @UnderscoreNaming
 @Table(name = "sys_autocode")
-public class SysAutoCode {
+public class AutoCode {
 	@Id
 	private String id;
 	

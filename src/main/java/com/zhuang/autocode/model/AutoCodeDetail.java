@@ -8,7 +8,7 @@ import java.util.Date;
 
 @UnderscoreNaming
 @Table(name = "sys_autocode_detail")
-public class SysAutoCodeDetail {
+public class AutoCodeDetail {
 	@Id
 	public String id;
 

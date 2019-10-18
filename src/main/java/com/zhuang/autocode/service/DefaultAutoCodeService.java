@@ -1,32 +1,32 @@
 package com.zhuang.autocode.service;
 
-import com.zhuang.autocode.model.SysAutoCode;
-import com.zhuang.autocode.model.SysAutoCodeDetail;
+import com.zhuang.autocode.model.AutoCode;
+import com.zhuang.autocode.model.AutoCodeDetail;
 import com.zhuang.data.DbAccessor;
 
 public class DefaultAutoCodeService implements AutoCodeService {
 
     private DbAccessor dbAccessor = DbAccessor.get();
-    public void add(SysAutoCode sysAutoCode) {
-        dbAccessor.insert(sysAutoCode);
+    public void add(AutoCode autoCode) {
+        dbAccessor.insert(autoCode);
     }
 
-    public SysAutoCode get(String id) {
-        return dbAccessor.select(id, SysAutoCode.class);
+    public AutoCode get(String id) {
+        return dbAccessor.select(id, AutoCode.class);
     }
 
-    public SysAutoCodeDetail getDetailByPrefixCode(String autoCodeId, String prefixCode) {
-        SysAutoCodeDetail params = new SysAutoCodeDetail();
+    public AutoCodeDetail getDetailByPrefixCode(String autoCodeId, String prefixCode) {
+        AutoCodeDetail params = new AutoCodeDetail();
         params.setAutocodeId(autoCodeId);
         params.setPrefixCode(prefixCode);
-        return dbAccessor.selectOne(params, SysAutoCodeDetail.class);
+        return dbAccessor.selectOne(params, AutoCodeDetail.class);
     }
 
-    public void addDetail(SysAutoCodeDetail detail) {
+    public void addDetail(AutoCodeDetail detail) {
         dbAccessor.insert(detail);
     }
 
-    public void saveDetail(SysAutoCodeDetail detail) {
+    public void saveDetail(AutoCodeDetail detail) {
         dbAccessor.update(detail);
     }
 
