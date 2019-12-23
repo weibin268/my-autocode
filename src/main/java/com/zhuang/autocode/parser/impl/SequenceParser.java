@@ -39,7 +39,7 @@ public class SequenceParser implements Parser {
         Date dtNow = new Date();
         if (detailModel != null) {
             detailModel.setSeq(detailModel.getSeq() + 1);
-            detailModel.setModifiedTime(dtNow);
+            detailModel.setModifyTime(dtNow);
             context.getService().saveDetail(detailModel);
         } else {
             detailModel = new AutoCodeDetail();
@@ -47,8 +47,8 @@ public class SequenceParser implements Parser {
             detailModel.setAutocodeId(context.getAutoCode().getId());
             detailModel.setPrefixCode(prefixCode);
             detailModel.setSeq(1);
-            detailModel.setCreatedTime(dtNow);
-            detailModel.setModifiedTime(dtNow);
+            detailModel.setCreateTime(dtNow);
+            detailModel.setModifyTime(dtNow);
             context.getService().addDetail(detailModel);
         }
         int finalLength = (detailModel.getSeq().toString().length() > minLength ? detailModel.getSeq().toString().length() : minLength);

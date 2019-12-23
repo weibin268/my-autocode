@@ -13,7 +13,7 @@ CREATE TABLE sys_autocode_detail (
   autocode_id varchar(50) NOT NULL,
   prefix_code varchar(100) DEFAULT NULL,
   seq int(11) NOT NULL,
-  created_time datetime DEFAULT NULL,
-  modified_time datetime DEFAULT NULL,
+  create_time datetime DEFAULT NULL,
+  modify_time datetime DEFAULT NULL,
   PRIMARY KEY (id)
 );

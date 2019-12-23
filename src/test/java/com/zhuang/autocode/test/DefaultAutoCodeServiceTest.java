@@ -34,8 +34,8 @@ public class DefaultAutoCodeServiceTest {
 		autoCodeDetail.setSeq(1);
 		autoCodeDetail.setPrefixCode("zwb");
 		autoCodeDetail.setAutocodeId("1");
-		autoCodeDetail.setCreatedTime(new Date());
-		autoCodeDetail.setModifiedTime(new Date());
+		autoCodeDetail.setCreateTime(new Date());
+		autoCodeDetail.setModifyTime(new Date());
 
 		service.addDetail(autoCodeDetail);
 	}
@@ -49,8 +49,8 @@ public class DefaultAutoCodeServiceTest {
 		autoCodeDetail.setSeq(1);
 		autoCodeDetail.setPrefixCode("zzzzzzzzzzzz");
 		autoCodeDetail.setAutocodeId("1111111111111");
-		autoCodeDetail.setCreatedTime(new Date());
-		autoCodeDetail.setModifiedTime(new Date());
+		autoCodeDetail.setCreateTime(new Date());
+		autoCodeDetail.setModifyTime(new Date());
 
 		service.saveDetail(autoCodeDetail);
 	}

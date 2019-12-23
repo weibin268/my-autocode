@@ -18,9 +18,9 @@ public class AutoCodeDetail {
 
 	public Integer seq;
 
-	public Date createdTime;
+	public Date createTime;
 
-	public Date modifiedTime;
+	public Date modifyTime;
 
 	public String getId() {
 		return id;
@@ -54,19 +54,19 @@ public class AutoCodeDetail {
 		this.seq = seq;
 	}
 
-	public Date getCreatedTime() {
-		return createdTime;
+	public Date getCreateTime() {
+		return createTime;
 	}
 
-	public void setCreatedTime(Date createdTime) {
-		this.createdTime = createdTime;
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
 	}
 
-	public Date getModifiedTime() {
-		return modifiedTime;
+	public Date getModifyTime() {
+		return modifyTime;
 	}
 
-	public void setModifiedTime(Date modifiedTime) {
-		this.modifiedTime = modifiedTime;
+	public void setModifyTime(Date modifyTime) {
+		this.modifyTime = modifyTime;
 	}
 }
