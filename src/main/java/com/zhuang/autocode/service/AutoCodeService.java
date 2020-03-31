@@ -1,17 +1,15 @@
 package com.zhuang.autocode.service;
 
 import com.zhuang.autocode.model.AutoCode;
-import com.zhuang.autocode.model.AutoCodeDetail;
 
 public interface AutoCodeService {
 	
 	void add(AutoCode model);
-    
+
+	void update(AutoCode model);
+
     AutoCode get(String id);
     
-    AutoCodeDetail getDetailByPrefixCode(String autoCodeId , String prefixCode);
+    AutoCode getByExpressionAndCodePrefix(String expression, String codePrefix);
 
-    void addDetail(AutoCodeDetail detail);
-
-    void saveDetail(AutoCodeDetail detail);
 }

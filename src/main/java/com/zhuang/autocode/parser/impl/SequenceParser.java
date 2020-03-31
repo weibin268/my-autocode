@@ -4,7 +4,7 @@ import java.text.DecimalFormat;
 import java.util.Date;
 import java.util.UUID;
 
-import com.zhuang.autocode.model.AutoCodeDetail;
+import com.zhuang.autocode.model.AutoCode;
 import com.zhuang.autocode.parser.Parser;
 import com.zhuang.autocode.parser.ParserContext;
 
@@ -31,32 +31,32 @@ public class SequenceParser implements Parser {
                 keepIncrease = true;
             }
         }
-        String prefixCode = context.getParsedText().split("\\{")[0];
+        String codePrefix = context.getParsedText().split("\\{")[0];
         if (keepIncrease) {
-            prefixCode = "none";
+            codePrefix = "none";
         }
-        AutoCodeDetail detailModel = context.getService().getDetailByPrefixCode(context.getAutoCode().getId(), prefixCode);
+        AutoCode autoCode = context.getService().getByExpressionAndCodePrefix(context.getExpression(), codePrefix);
         Date dtNow = new Date();
-        if (detailModel != null) {
-            detailModel.setSeq(detailModel.getSeq() + 1);
-            detailModel.setModifyTime(dtNow);
-            context.getService().saveDetail(detailModel);
+        if (autoCode != null) {
+            autoCode.setCodeSeq(autoCode.getCodeSeq() + 1);
+            autoCode.setModifyTime(dtNow);
+            context.getService().update(autoCode);
         } else {
-            detailModel = new AutoCodeDetail();
-            detailModel.setId(UUID.randomUUID().toString());
-            detailModel.setAutocodeId(context.getAutoCode().getId());
-            detailModel.setPrefixCode(prefixCode);
-            detailModel.setSeq(1);
-            detailModel.setCreateTime(dtNow);
-            detailModel.setModifyTime(dtNow);
-            context.getService().addDetail(detailModel);
+            autoCode = new AutoCode();
+            autoCode.setId(UUID.randomUUID().toString());
+            autoCode.setExpression(context.getExpression());
+            autoCode.setCodePrefix(codePrefix);
+            autoCode.setCodeSeq(1);
+            autoCode.setCreateTime(dtNow);
+            autoCode.setModifyTime(dtNow);
+            context.getService().add(autoCode);
         }
-        int finalLength = (detailModel.getSeq().toString().length() > minLength ? detailModel.getSeq().toString().length() : minLength);
+        int finalLength = (autoCode.getCodeSeq().toString().length() > minLength ? autoCode.getCodeSeq().toString().length() : minLength);
         String dfPattern = "";
         for (int i = 0; i < finalLength; i++) {
             dfPattern = dfPattern + "0";
         }
-        intSeq = detailModel.getSeq();
+        intSeq = autoCode.getCodeSeq();
         DecimalFormat df = new DecimalFormat(dfPattern);
         return df.format(intSeq);
     }

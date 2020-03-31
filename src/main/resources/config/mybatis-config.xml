@@ -32,6 +32,5 @@
 
 	<mappers>
 		<mapper resource="com/zhuang/autocode/mapper/AutoCodeMapper.xml" />
-		<mapper resource="com/zhuang/autocode/mapper/AutoCodeDetailMapper.xml" />
 	</mappers>
 </configuration>

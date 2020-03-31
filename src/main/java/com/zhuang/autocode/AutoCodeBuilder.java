@@ -13,45 +13,38 @@ import com.zhuang.autocode.service.AutoCodeService;
 import com.zhuang.data.DbAccessor;
 
 public class AutoCodeBuilder {
-    private AutoCode autoCode;
     private AutoCodeService service;
 
-    public AutoCodeBuilder(String autoCodeId) {
-        this(autoCodeId, new DefaultAutoCodeService());
+    public AutoCodeBuilder() {
+        this(new DefaultAutoCodeService());
     }
 
-    public AutoCodeBuilder(String autoCodeId, AutoCodeService service) {
+    public AutoCodeBuilder(AutoCodeService service) {
         this.service = service;
-        this.autoCode = service.get(autoCodeId);
     }
 
-    public String build() {
+    public String build(String expression) {
         String result = "";
-        result = autoCode.getExpression();
+        result = expression;
         Pattern pattern = Pattern.compile("(?<=\\{)[^\\{\\}]+(?=\\})");
-        Matcher matcher = pattern.matcher(autoCode.getExpression());
+        Matcher matcher = pattern.matcher(expression);
         while (matcher.find()) {
-
             String tag = matcher.group();
             String[] arTag = tag.split(":");
             String tagName = arTag[0];
             String tagParam = arTag.length > 1 ? tag.replaceAll(tagName + ":", "") : "";
-
             String parsedText = "";
-
             Parser parser = ParserRepository.getInstance().getParser(tagName);
             if (parser != null) {
                 ParserContext parserContext = new ParserContext();
-                parserContext.setAutoCode(autoCode);
+                parserContext.setExpression(expression);
                 parserContext.setParameter(tagParam);
                 parserContext.setParsedText(result);
                 parserContext.setService(service);
 
                 parsedText = parser.parse(parserContext);
             }
-
             result = result.replace("{" + tag + "}", parsedText);
-
         }
         return result;
     }

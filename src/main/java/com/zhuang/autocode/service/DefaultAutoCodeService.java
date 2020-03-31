@@ -1,7 +1,6 @@
 package com.zhuang.autocode.service;
 
 import com.zhuang.autocode.model.AutoCode;
-import com.zhuang.autocode.model.AutoCodeDetail;
 import com.zhuang.data.DbAccessor;
 
 public class DefaultAutoCodeService implements AutoCodeService {
@@ -16,27 +15,27 @@ public class DefaultAutoCodeService implements AutoCodeService {
         this.dbAccessor = dbAccessor;
     }
 
+    @Override
     public void add(AutoCode autoCode) {
         dbAccessor.insert(autoCode);
     }
 
+    @Override
+    public void update(AutoCode model) {
+        dbAccessor.update(model,true);
+    }
+
+    @Override
     public AutoCode get(String id) {
         return dbAccessor.select(id, AutoCode.class);
     }
 
-    public AutoCodeDetail getDetailByPrefixCode(String autoCodeId, String prefixCode) {
-        AutoCodeDetail params = new AutoCodeDetail();
-        params.setAutocodeId(autoCodeId);
-        params.setPrefixCode(prefixCode);
-        return dbAccessor.selectOne(params, AutoCodeDetail.class);
-    }
-
-    public void addDetail(AutoCodeDetail detail) {
-        dbAccessor.insert(detail);
-    }
-
-    public void saveDetail(AutoCodeDetail detail) {
-        dbAccessor.update(detail);
+    @Override
+    public AutoCode getByExpressionAndCodePrefix(String expression, String codePrefix) {
+        AutoCode params = new AutoCode();
+        params.setExpression(expression);
+        params.setCodePrefix(codePrefix);
+        return dbAccessor.selectOne(params, AutoCode.class);
     }
 
 }

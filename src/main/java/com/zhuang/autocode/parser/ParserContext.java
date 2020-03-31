@@ -5,17 +5,17 @@ import com.zhuang.autocode.service.AutoCodeService;
 
 public class ParserContext {
 
-	private AutoCode autoCode;
+	private String expression;
 	private String parameter;
 	private String parsedText;
 	private AutoCodeService service;
 
-	public AutoCode getAutoCode() {
-		return autoCode;
+	public String getExpression() {
+		return expression;
 	}
 
-	public void setAutoCode(AutoCode autoCode) {
-		this.autoCode = autoCode;
+	public void setExpression(String expression) {
+		this.expression = expression;
 	}
 
 	public String getParameter() {

@@ -1,18 +1,10 @@
+
 DROP TABLE IF EXISTS sys_autocode;
 CREATE TABLE sys_autocode (
-  id varchar(50) NOT NULL,
-  expression varchar(500) NOT NULL,
-  description varchar(500) DEFAULT NULL,
-  PRIMARY KEY (id)
-);
-
-
-DROP TABLE IF EXISTS sys_autocode_detail;
-CREATE TABLE sys_autocode_detail (
-  id varchar(50) NOT NULL,
-  autocode_id varchar(50) NOT NULL,
-  prefix_code varchar(100) DEFAULT NULL,
-  seq int(11) NOT NULL,
+  id varchar(36) NOT NULL,
+  expression varchar(50) DEFAULT NULL,
+  code_prefix varchar(50) DEFAULT NULL,
+  code_seq int(11) NOT NULL,
   create_time datetime DEFAULT NULL,
   modify_time datetime DEFAULT NULL,
   PRIMARY KEY (id)
