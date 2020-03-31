@@ -1,16 +1,13 @@
 package com.zhuang.autocode;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import com.zhuang.autocode.model.AutoCode;
 import com.zhuang.autocode.parser.Parser;
 import com.zhuang.autocode.parser.ParserContext;
 import com.zhuang.autocode.parser.ParserRepository;
+import com.zhuang.autocode.service.AutoCodeService;
 import com.zhuang.autocode.service.DefaultAutoCodeService;
 
-import com.zhuang.autocode.service.AutoCodeService;
-import com.zhuang.data.DbAccessor;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class AutoCodeBuilder {
     private AutoCodeService service;
