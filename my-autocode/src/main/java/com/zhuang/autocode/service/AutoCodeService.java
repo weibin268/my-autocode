@@ -8,8 +8,6 @@ public interface AutoCodeService {
 
 	void update(AutoCode model);
 
-    AutoCode get(String id);
-    
     AutoCode getByExpressionAndCodePrefix(String expression, String codePrefix);
 
 }

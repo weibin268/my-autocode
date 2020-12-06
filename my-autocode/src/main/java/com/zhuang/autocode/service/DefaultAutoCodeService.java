@@ -26,11 +26,6 @@ public class DefaultAutoCodeService implements AutoCodeService {
     }
 
     @Override
-    public AutoCode get(String id) {
-        return dbAccessor.select(id, AutoCode.class);
-    }
-
-    @Override
     public AutoCode getByExpressionAndCodePrefix(String expression, String codePrefix) {
         AutoCode params = new AutoCode();
         params.setExpression(expression);

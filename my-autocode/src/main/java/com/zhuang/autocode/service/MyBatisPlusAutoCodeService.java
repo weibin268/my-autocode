@@ -18,11 +18,6 @@ public class MyBatisPlusAutoCodeService extends ServiceImpl<AutoCodeMapper, Auto
     }
 
     @Override
-    public AutoCode get(String id) {
-        return getById(id);
-    }
-
-    @Override
     public AutoCode getByExpressionAndCodePrefix(String expression, String codePrefix) {
         return getOne(new LambdaQueryWrapper<AutoCode>()
                 .eq(AutoCode::getExpression, expression)
