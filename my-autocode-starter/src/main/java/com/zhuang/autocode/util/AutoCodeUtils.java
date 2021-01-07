@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 import javax.annotation.PostConstruct;
 
 /**
- * 文件上传工具类
+ * 自动编码工具类
  */
 @Component
 public class AutoCodeUtils {
