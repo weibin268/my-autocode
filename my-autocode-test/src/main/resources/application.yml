@@ -1,0 +1,25 @@
+# server
+server:
+  port: 8088
+# spring
+spring:
+  # 数据源
+  datasource:
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://weibin268.top:3306/upms?useSSL=false&useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true
+    username: root
+    password: 123456
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    database: 0
+    password:
+# logging
+logging:
+  level:
+    org.springframework.jdbc.datasource.DataSourceTransactionManager: debug
+    org.springframework.jdbc.datasource.DataSourceUtils: debug
+
+my:
+  autocode:
+    storeProvider: redis

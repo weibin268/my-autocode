@@ -3,7 +3,10 @@ package com.zhuang.autocode;
 import com.zhuang.autocode.AutoCodeBuilder;
 import com.zhuang.autocode.service.AutoCodeService;
 import com.zhuang.autocode.service.MyBatisPlusAutoCodeService;
+import com.zhuang.autocode.service.RedisAutoCodeService;
 import org.mybatis.spring.annotation.MapperScan;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -14,13 +17,21 @@ import org.springframework.context.annotation.Configuration;
 public class MyAutoCodeAutoConfiguration {
 
     @Bean
-    public AutoCodeBuilder autoCodeBuilder() {
-        return new AutoCodeBuilder(autoCodeService());
+    public AutoCodeBuilder autoCodeBuilder(AutoCodeService autoCodeService) {
+        return new AutoCodeBuilder(autoCodeService);
     }
 
     @Bean
-    public AutoCodeService autoCodeService() {
+    @ConditionalOnProperty(name = "my.autocode.storeProvider", havingValue = "db", matchIfMissing = true)
+    public AutoCodeService myBatisPlusAutoCodeService() {
         return new MyBatisPlusAutoCodeService();
     }
+
+    @Bean
+    @ConditionalOnProperty(name = "my.autocode.storeProvider", havingValue = "redis")
+    public AutoCodeService redisAutoCodeService() {
+        return new RedisAutoCodeService();
+    }
+
 
 }

@@ -10,6 +10,7 @@
     <modules>
         <module>my-autocode</module>
         <module>my-autocode-starter</module>
+        <module>my-autocode-test</module>
     </modules>
 
 </project>
