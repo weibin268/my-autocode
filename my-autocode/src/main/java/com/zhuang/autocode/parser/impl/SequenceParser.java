@@ -51,7 +51,7 @@ public class SequenceParser implements Parser {
             autoCode.setModifyTime(dtNow);
             context.getService().add(autoCode);
         }
-        int finalLength = (autoCode.getCodeSeq().toString().length() > minLength ? autoCode.getCodeSeq().toString().length() : minLength);
+        int finalLength = (Math.max(autoCode.getCodeSeq().toString().length(), minLength));
         String dfPattern = "";
         for (int i = 0; i < finalLength; i++) {
             dfPattern = dfPattern + "0";

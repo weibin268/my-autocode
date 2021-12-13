@@ -9,7 +9,7 @@ import java.util.Map;
 public class ParserRepository {
 
     private static ParserRepository instance;
-    private Map<String, Parser> mapParsers;
+    private final Map<String, Parser> mapParsers;
 
     public static synchronized ParserRepository getInstance() {
         if (instance == null) {
@@ -26,15 +26,11 @@ public class ParserRepository {
     }
 
     public ParserRepository() {
-        mapParsers = new HashMap<String, Parser>();
+        mapParsers = new HashMap<>();
     }
 
     public Parser getParser(String name) {
-        if (mapParsers.containsKey(name)) {
-            return mapParsers.get(name);
-        } else {
-            return null;
-        }
+        return mapParsers.getOrDefault(name, null);
     }
 
     public void addParser(Parser parser) {

@@ -15,8 +15,7 @@ public class DateTimeParser implements Parser {
     public String parse(ParserContext context) {
         Date dNow = new Date();
         SimpleDateFormat sdf = new SimpleDateFormat(context.getParameter());
-        String strNow = sdf.format(dNow);
-        return strNow;
+        return sdf.format(dNow);
     }
 
 }

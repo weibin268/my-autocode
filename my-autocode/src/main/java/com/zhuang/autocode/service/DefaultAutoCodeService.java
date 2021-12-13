@@ -5,7 +5,7 @@ import com.zhuang.data.DbAccessor;
 
 public class DefaultAutoCodeService implements AutoCodeService {
 
-    private DbAccessor dbAccessor;
+    private final DbAccessor dbAccessor;
 
     public DefaultAutoCodeService() {
         this.dbAccessor = DbAccessor.get();
