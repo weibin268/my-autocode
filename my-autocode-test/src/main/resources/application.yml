@@ -22,4 +22,4 @@ logging:
 
 my:
   autocode:
-    storeProvider: db
+    storeProvider: redis

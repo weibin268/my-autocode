@@ -3,6 +3,7 @@ package com.zhuang.autocode;
 import com.zhuang.autocode.service.AutoCodeService;
 import com.zhuang.autocode.service.MyBatisPlusAutoCodeService;
 import com.zhuang.autocode.service.RedisAutoCodeService;
+import com.zhuang.autocode.util.RedisUtils;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
@@ -29,6 +30,12 @@ public class MyAutoCodeAutoConfiguration {
     @ConditionalOnProperty(name = "my.autocode.storeProvider", havingValue = "redis")
     public AutoCodeService redisAutoCodeService() {
         return new RedisAutoCodeService();
+    }
+
+    @Bean
+    @ConditionalOnProperty(name = "my.autocode.storeProvider", havingValue = "redis")
+    public RedisUtils redisUtils() {
+        return new RedisUtils();
     }
 
 }
